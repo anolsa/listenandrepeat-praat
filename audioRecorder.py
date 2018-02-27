@@ -1,13 +1,13 @@
 import pyaudio
 import wave
 
-def nauhoitus(pituus, tiedosto):
+def nauhoitus(pituus, tiedosto, polku):
     FORMAT = pyaudio.paInt16
     CHANNELS = 2
     RATE = 44100
     CHUNK = 1024
     RECORD_SECONDS = pituus
-    WAVE_OUTPUT_FILENAME = tiedosto + ".wav"
+    WAVE_OUTPUT_FILENAME = polku + "/" + tiedosto + ".wav"
      
     audio = pyaudio.PyAudio()
 

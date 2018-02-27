@@ -17,9 +17,9 @@ def lataaSkripti(skriptinNimi):
 #tama menetelma ottaa listamuodossa olevan skriptin seka
 #annetut tiedostonimet, ja lisaa ne skriptiin oikeisiin kohtiin
 #jonka jalkeen se kasaa skriptin jalleen luettavaan muotoon
-def kokoaSkripti(skripti, aaniNimi, tulosNimi):
-    skripti[0] = "Read from file: \"" + aaniNimi + "\"\n"
-    skripti[12] = "fileName$ = \"" + tulosNimi + "\"\n"
+def kokoaSkripti(skripti, aaniNimi, tulosNimi, polkuNimi):
+    skripti[0] = "Read from file: \"" + polkuNimi + "\\" + aaniNimi + "\"\n"    
+    skripti[12] = "fileName$ = \"" + "\\" + polkuNimi + "\\" + tulosNimi + "\"\n"
     return ''.join(skripti)
 
 #tama menetelma ajaa skriptin. se ottaa argumenteiksi
@@ -27,8 +27,8 @@ def kokoaSkripti(skripti, aaniNimi, tulosNimi):
 #ne kokoajaskriptille, jonka tulosteen se sitten ylikirjoittaa
 #SKRIPTI-muuttujassa maaritettyyn tiedostoon.
 #sitten se ajaa skriptin
-def ajaSkripti(skripti, aaniNimi, tulosNimi):
-    tuloste = kokoaSkripti(skripti, aaniNimi, tulosNimi)
+def ajaSkripti(skripti, aaniNimi, tulosNimi, polkuNimi):
+    tuloste = kokoaSkripti(skripti, aaniNimi, tulosNimi, polkuNimi)
     f = file(SKRIPTI, "w")
     f.write(tuloste)
     f.close()
