@@ -1,4 +1,4 @@
-Read from file: "file.wav"
+Read from file: "KH1_kalib1.wav"
 soundBase = selected ("Sound")
 To TextGrid (silences): 100, 0.0, -15.0, 0.1, 0.1, "", "sounding"
 textBase = selected ("TextGrid")
@@ -10,8 +10,8 @@ for i to n
 	sound [i] = selected ("Sound", i)
 endfor
 
-fileName$ = "formant.txt"
-writeFile: fileName$, ""
+fileName$ = "KH1_kalib1_form.txt"
+appendFileLine: fileName$, ""
 
 for i to n
 	selectObject: sound [i]

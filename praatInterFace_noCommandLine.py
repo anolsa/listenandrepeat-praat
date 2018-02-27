@@ -32,4 +32,4 @@ def ajaSkripti(skripti, aaniNimi, tulosNimi):
     f = file(SKRIPTI, "w")
     f.write(tuloste)
     f.close()
-    subprocess.call("C:Praat/praat.exe --run \"" + SKRIPTI + "\"", shell = True)
+    subprocess.call("praat --run \"" + SKRIPTI + "\"", shell = True)

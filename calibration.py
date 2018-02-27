@@ -14,7 +14,11 @@ try:
 except IOError:
     osalLista = {}
 
-osalMaara = len(osalLista.keys())
+osalMaara = 0
+if len(osalLista.keys()) == 0:
+    osalMaara = 1
+else:
+    osalMaara = len(osalLista.keys())
 
 kieliLista = ["englanti", "ruotsi", "saksa", "espanja"]
 
