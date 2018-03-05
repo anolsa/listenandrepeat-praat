@@ -1,33 +1,65 @@
-from Tkinter import *
+from GUI import RadioButton, RadioGroup, Label, Font, Window, TextField, Button, application
 
-fields = ["Nimi", "Ika", "Asuinpaikka"]
-sanakirja = {}
+win_num = 0
+tiedot = []
 
-def makeform(root, fields):
-    entries = []
-    for field in fields:
-        row = Frame(root)
-        lab = Label(row, width=15, text=field, anchor='w')
-        ent = Entry(row)
-        row.pack(side=TOP, fill=X, padx=5, pady=5)
-        lab.pack(side=LEFT)
-        ent.pack(side=RIGHT, expand=YES, fill=X)
-        entries.append((field, ent))
-    return entries
+class TestWindow(Window):
+    
+    def key_down(self, event):
+        c = event.char
+        if c == '\r':
+            print "Default"
+        elif c == '\x1b':
+            print "Cancel"
+        else:
+            Window.key_down(self, event)
 
-def fetch(entries, dictionary):
-    for entry in entries:
-        field = entry[0]
-        text  = entry[1].get()
-        dictionary[field] = text
-    print dictionary
+class TestTextField(TextField):
 
-top = Tk()
-ents = makeform(top, fields)
-top.bind('<Return>', (lambda event, e=ents: fetch(e, sanakirja)))   
-b1 = Button(top, text='Show',
-            command=(lambda e=ents: fetch(e, sanakirja)))
-b1.pack(side=LEFT, padx=5, pady=5)
-b2 = Button(top, text='Quit', command = top.destroy)
-b2.pack(side=LEFT, padx=5, pady=5)
-top.mainloop()
+    def __init__(self, number, *args, **kwds):
+        TextField.__init__(self, *args, **kwds)
+        self.number = number
+
+nimiLabel = Label("Nimi:")
+nimiLabel.position = (20, 20)
+
+grp = RadioGroup()
+
+def set_to_1():
+    grp.value = 4
+
+def make_window():
+    global win_num
+    global tiedot
+    nimi = ""
+    win_num += 1
+    win = TestWindow(size = (320, 200), title = "Text fields %d" % (win_num))
+    win.tf1 = TestTextField(1,
+        position = (nimiLabel.right + 20, 20),
+        width = 200, text = "")
+    buty = win.tf1.bottom + 20
+##    buttons = [RadioButton(x = engLabel.right + 20 * i, y = win.tf3.bottom + 20, title = "", group = grp) for i in range(1,6)]
+##    for i, v in enumerate(buttons):
+##        v.set_value(i+1)
+    show_but = Button("Show",
+        position = (20, buty),
+        action = tiedot.append(repr(win.tf1.text)))
+    win.add(nimiLabel)
+    win.add(win.tf1)
+    win.add(show_but)
+    
+    win.width = win.tf1.right + 20
+    win.height = show_but.bottom + 20
+    win.tf1.become_target()
+    win.show()
+    return win
+
+win = make_window()
+
+def sigterm(*a):
+    raise Exception("SIGTERM")
+
+import signal
+signal.signal(signal.SIGTERM, sigterm)
+
+application().run()
