@@ -31,4 +31,4 @@ os.makedirs(koehenkilo)
 
 tau.tallennaOsallistujat(osalLista)
 
-ts.kalibraatio(tiedostot, skripti, koehenkilo)
+tulokset = ts.kalibraatio(tiedostot, skripti, koehenkilo)
