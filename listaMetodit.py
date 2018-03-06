@@ -9,7 +9,7 @@ def laskeSuhteet(formanttiLista):
     f2suhde = [(i - sorted(lista3)[0])/f2range for i in lista3]
 
     suhteet = []
-    for i in range(0,len(f1suhde)-1):
+    for i in range(0,len(f1suhde)):
         suhteet.append((float(f1suhde[i]), float(f2suhde[i])))
 
     return suhteet
