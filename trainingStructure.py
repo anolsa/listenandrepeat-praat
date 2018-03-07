@@ -39,16 +39,4 @@ def kalibraatio(tiedostoLista, skripti, polku):
             if jatko == "k":
                 break
             else:
-                continue
-
-    for i in tiedostoLista:
-        f = open(polku + "/" + i + "_form.txt", "r")
-        tulos = lm.laskeSuhteet(f.readlines())
-        f.close()
-        suhdeLista.append(tulos)
-        f = open(polku + "/" + i + "_suhteet.txt", "w")
-        json.dump(tulos, f)
-        f.close()
-
-    return (formLista, suhdeLista)
-        
+                continue    

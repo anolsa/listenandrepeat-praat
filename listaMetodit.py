@@ -1,12 +1,17 @@
-def laskeSuhteet(formanttiLista):    
-    lista2 = [int(i.split(",")[0]) for i in formanttiLista]
-    lista3 = [int(i.split(",")[1]) for i in formanttiLista]
+def f1Lista(formanttiLista):
+    lista = [int(i.split(",")[0]) for i in formanttiLista]
+    return lista
 
-    f1range = float(sorted(lista2)[-1]) - float(sorted(lista2)[0])
-    f2range = float(sorted(lista3)[-1]) - float(sorted(lista3)[0])
+def f2Lista(formanttiLista):
+    lista = [int(i.split(",")[1]) for i in formanttiLista]
+    return lista
 
-    f1suhde = [(i - sorted(lista2)[0])/f1range for i in lista2]
-    f2suhde = [(i - sorted(lista3)[0])/f2range for i in lista3]
+def laskeSuhteet(formanttiLista, f1min, f2min, f1range, f2range):   
+    lista2 = f1Lista(formanttiLista)
+    lista3 = f2Lista(formanttiLista)    
+
+    f1suhde = [(i - f1min)/f1range for i in lista2]
+    f2suhde = [(i - f2min)/f2range for i in lista3]
 
     suhteet = []
     for i in range(0,len(f1suhde)):
