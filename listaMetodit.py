@@ -13,3 +13,6 @@ def laskeSuhteet(formanttiLista):
         suhteet.append((float(f1suhde[i]), float(f2suhde[i])))
 
     return suhteet
+
+def laskeSuhteetPari(formanttiTuple):
+    pass
