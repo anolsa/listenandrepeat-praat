@@ -1,4 +1,4 @@
-Read from file: "KH5\KH5_kalib3.wav"
+Read from file: "KH3\KH3_1.wav"
 soundBase = selected ("Sound")
 To TextGrid (silences): 100, 0.0, -15.0, 0.1, 0.1, "", "sounding"
 textBase = selected ("TextGrid")
@@ -10,7 +10,7 @@ for i to n
 	sound [i] = selected ("Sound", i)
 endfor
 
-fileName$ = "\KH5\KH5_kalib3_form.txt"
+fileName$ = "\KH3\KH3_1_form.txt"
 writeFile: fileName$, ""
 
 for i to n

@@ -1,7 +1,10 @@
 import json
 import audioRecorder as ar
 import praatInterFace_noCommandLine as pr
+import taustaTiedot as tau
 import listaMetodit
+
+skripti = pr.lataaSkripti("formanttiSkripti.praat")
 
 try:
     f = open("osallistujat.json", "r")
@@ -9,3 +12,23 @@ try:
     f.close()
 except IOError:
     print "\nEi tallennettuja koehenkiloita!"
+    quit
+
+for i, e in enumerate(osalLista.keys()):
+    print str(i+1) + '. ' + e
+kh_valinta = input("Valitse haluamasi koehenkilo listasta: ")
+koehenkilo = "KH" + str(kh_valinta)
+
+harjoituskerrat = 2
+tehdyt_harjoitukset = 0
+harj_formantit = []
+
+while tehdyt_harjoitukset < harjoituskerrat:
+    tiedosto = koehenkilo + '_' + str(tehdyt_harjoitukset)
+    ar.nauhoitus(5, tiedosto, koehenkilo)
+    pr.ajaSkripti(skripti, tiedosto + '.wav', tiedosto + '_form.txt', koehenkilo)
+    f = open(koehenkilo + '/' + tiedosto + '_form.txt', 'r')
+    harj_formantit.append(f.readlines()[0])
+    osalLista[koehenkilo]["Harjoitus"] = harj_formantit
+    f.close()
+    tehdyt_harjoitukset += 1
