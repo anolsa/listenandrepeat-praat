@@ -19,5 +19,8 @@ def laskeSuhteet(formanttiLista, f1min, f2min, f1range, f2range):
 
     return suhteet
 
-def laskeSuhteetPari(formanttiTuple):
-    pass
+def laskeSuhteetPari(formanttiTuple, f1min, f2min, f1range, f2range):
+    f1suhde = (formanttiTuple[0] - f1min)/f1range
+    f2suhde = (formanttiTuple[1] - f2min)/f2range
+    suhteet = (f1suhde, f2suhde)
+    

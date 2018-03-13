@@ -13,15 +13,15 @@ f2range = float(sorted(lista3)[-1]) - float(sorted(lista3)[0])
 f1suhde = [(i - sorted(lista2)[0])/f1range for i in lista2]
 f2suhde = [(i - sorted(lista3)[0])/f2range for i in lista3]
 
+def piirraKartta(f1suhde, f2suhde, f1=0, f2=0):           
+    fig, ax = plt.subplots()
+    ax.scatter(f2suhde, f1suhde)
 
-fig, ax = plt.subplots()
-ax.scatter(f2suhde, f1suhde)
+    for i, txt in enumerate(vokaalit):
+        ax.annotate(txt, (f2suhde[i] + -.01, f1suhde[i] + -.01))
 
-for i, txt in enumerate(vokaalit):
-    ax.annotate(txt, (f2suhde[i] + -.01, f1suhde[i] + -.01))
+    plt.title("Vowels")
+    plt.gca().invert_xaxis()
+    plt.gca().invert_yaxis()
 
-plt.title("Vowels")
-plt.gca().invert_xaxis()
-plt.gca().invert_yaxis()
-
-plt.show()
+    plt.show()

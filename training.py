@@ -3,6 +3,7 @@ import audioRecorder as ar
 import praatInterFace_noCommandLine as pr
 import taustaTiedot as tau
 import listaMetodit
+import scatterTest as st
 
 skripti = pr.lataaSkripti("formanttiSkripti.praat")
 
