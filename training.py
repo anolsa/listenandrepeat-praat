@@ -2,11 +2,16 @@ import json
 import audioRecorder as ar
 import praatInterFace_noCommandLine as pr
 import taustaTiedot as tau
-import listaMetodit
+import listaMetodit as lm
 import scatterTest as st
 
 skripti = pr.lataaSkripti("formanttiSkripti.praat")
-aakkoset = ['a', 'e', 'i', 'o', 'u', 'y', 'ae', 'oe']
+aakkoset = ['a', 'e', 'i', 'o', 'u', 'y', 'ae', 'oe', 'avoinO']
+
+def num(string):
+    eka = int(string.split(',')[0])
+    toka = int(string.split(',')[1])
+    return (eka, toka)
 
 try:
     f = open("osallistujat.json", "r")
@@ -25,6 +30,10 @@ harjoituskerrat = 2
 tehdyt_harjoitukset = 0
 harj_formantit = []
 
+suhteet = lm.suhdeListat(osalLista[koehenkilo]["suhdeluvut"])
+suhteet[0].append(0)
+suhteet[1].append(0)
+
 while tehdyt_harjoitukset < harjoituskerrat:
     tiedosto = koehenkilo + '_' + str(tehdyt_harjoitukset)
     ar.nauhoitus(5, tiedosto, koehenkilo)
@@ -33,5 +42,12 @@ while tehdyt_harjoitukset < harjoituskerrat:
     temp = f.readlines()[0]
     f.close()
     harj_formantit.append(temp)
-    osalLista[koehenkilo]["Harjoitus"] = harj_formantit    
+    osalLista[koehenkilo]["Harjoitus"] = harj_formantit
+    kuvaSuhteet = lm.laskeSuhteetPari(num(temp), osalLista[koehenkilo]["f1min"],
+                        osalLista[koehenkilo]["f2min"],
+                        osalLista[koehenkilo]["f1range"],
+                        osalLista[koehenkilo]["f2range"])
+    suhteet[0][-1] = kuvaSuhteet[0]
+    suhteet[1][-1] = kuvaSuhteet[1]
+    st.piirraKartta(suhteet[0], suhteet[1])
     tehdyt_harjoitukset += 1

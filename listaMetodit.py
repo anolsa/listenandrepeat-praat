@@ -23,3 +23,10 @@ def laskeSuhteetPari(formanttiTuple, f1min, f2min, f1range, f2range):
     f1suhde = (formanttiTuple[0] - f1min)/f1range
     f2suhde = (formanttiTuple[1] - f2min)/f2range
     suhteet = (f1suhde, f2suhde)
+    return suhteet
+
+def suhdeListat(sanakirja):
+    aakkoset = sanakirja.keys()
+    f1suhteet = [sanakirja[i][0] for i in aakkoset]
+    f2suhteet = [sanakirja[i][1] for i in aakkoset]
+    return (f1suhteet, f2suhteet)
