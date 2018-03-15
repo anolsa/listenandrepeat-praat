@@ -6,7 +6,7 @@ import listaMetodit as lm
 import scatterTest as st
 
 skripti = pr.lataaSkripti("formanttiSkripti.praat")
-aakkoset = ['a', 'e', 'i', 'o', 'u', 'y', 'ae', 'oe', 'avoinO']
+treenattava = 'avoinO'
 
 def num(string):
     eka = int(string.split(',')[0])
@@ -29,6 +29,8 @@ koehenkilo = "KH" + str(kh_valinta)
 harjoituskerrat = 2
 tehdyt_harjoitukset = 0
 harj_formantit = []
+aakkoset = osalLista[koehenkilo]["suhdeluvut"].keys()
+aakkoset.append(treenattava)
 
 suhteet = lm.suhdeListat(osalLista[koehenkilo]["suhdeluvut"])
 suhteet[0].append(0)
@@ -37,17 +39,19 @@ suhteet[1].append(0)
 while tehdyt_harjoitukset < harjoituskerrat:
     tiedosto = koehenkilo + '_' + str(tehdyt_harjoitukset)
     ar.nauhoitus(5, tiedosto, koehenkilo)
-    pr.ajaSkripti(skripti, tiedosto + '.wav', tiedosto + '_form.txt', koehenkilo)
+    pr.ajaSkripti(skripti, tiedosto + '.wav',
+                  tiedosto + '_form.txt', koehenkilo)
     f = open(koehenkilo + '/' + tiedosto + '_form.txt', 'r')
     temp = f.readlines()[0]
     f.close()
     harj_formantit.append(temp)
     osalLista[koehenkilo]["Harjoitus"] = harj_formantit
-    kuvaSuhteet = lm.laskeSuhteetPari(num(temp), osalLista[koehenkilo]["f1min"],
+    kuvaSuhteet = lm.laskeSuhteetPari(num(temp),
+                        osalLista[koehenkilo]["f1min"],
                         osalLista[koehenkilo]["f2min"],
                         osalLista[koehenkilo]["f1range"],
                         osalLista[koehenkilo]["f2range"])
     suhteet[0][-1] = kuvaSuhteet[0]
     suhteet[1][-1] = kuvaSuhteet[1]
-    st.piirraKartta(suhteet[0], suhteet[1])
+    st.piirraKartta(suhteet[0], suhteet[1], aakkoset)
     tehdyt_harjoitukset += 1
