@@ -6,6 +6,7 @@ import listaMetodit
 import scatterTest as st
 
 skripti = pr.lataaSkripti("formanttiSkripti.praat")
+aakkoset = ['a', 'e', 'i', 'o', 'u', 'y', 'ae', 'oe']
 
 try:
     f = open("osallistujat.json", "r")
@@ -29,7 +30,8 @@ while tehdyt_harjoitukset < harjoituskerrat:
     ar.nauhoitus(5, tiedosto, koehenkilo)
     pr.ajaSkripti(skripti, tiedosto + '.wav', tiedosto + '_form.txt', koehenkilo)
     f = open(koehenkilo + '/' + tiedosto + '_form.txt', 'r')
-    harj_formantit.append(f.readlines()[0])
-    osalLista[koehenkilo]["Harjoitus"] = harj_formantit
+    temp = f.readlines()[0]
     f.close()
+    harj_formantit.append(temp)
+    osalLista[koehenkilo]["Harjoitus"] = harj_formantit    
     tehdyt_harjoitukset += 1
