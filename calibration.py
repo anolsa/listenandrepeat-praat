@@ -60,8 +60,10 @@ osalLista[koehenkilo]["f2min"] = float(min(
     lm.f2Lista(osalLista[koehenkilo]["formantit2"]) +
     lm.f2Lista(osalLista[koehenkilo]["formantit3"])))    
 
-osalLista[koehenkilo]["f1range"] = osalLista[koehenkilo]["f1max"] - osalLista[koehenkilo]["f1min"]
-osalLista[koehenkilo]["f2range"] = osalLista[koehenkilo]["f2max"] - osalLista[koehenkilo]["f2min"]
+osalLista[koehenkilo]["f1range"] = (osalLista[koehenkilo]["f1max"]
+                                    - osalLista[koehenkilo]["f1min"])
+osalLista[koehenkilo]["f2range"] = (osalLista[koehenkilo]["f2max"]
+                                    - osalLista[koehenkilo]["f2min"])
 
 keskiarvot = []
 suhteet1 = lm.laskeSuhteet(osalLista[koehenkilo]["formantit1"],
