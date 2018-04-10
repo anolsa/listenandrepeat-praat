@@ -34,7 +34,8 @@ def uusiOsallistuja():
     kieliTaito = [(i, kysyKieli(i)) for i in kieliLista]
     global osalMaara
     osalMaara += 1
-    khTiedot = {"Nimi" : nimi, "Ika" : ika, "Asuinpaikka" : asuinPaikka, "Kielitaito" : kieliTaito}
+    khTiedot = {"Nimi" : nimi, "Ika" : ika, "Asuinpaikka" : asuinPaikka,
+                "Kielitaito" : kieliTaito, "Harjoitus" : []}
     return khTiedot
 
 def lisaaOsallistuja(osalLista, osalMaara):
