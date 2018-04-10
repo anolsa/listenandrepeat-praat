@@ -10,11 +10,6 @@ import scatterTest as st
 skripti = pr.lataaSkripti(pr.SKRIPTI)
 koehenkilo = ""
 aakkoset = ['a', 'e', 'i', 'o', 'u', 'y', 'ae', 'oe']
-
-def tarkistaKalibrointi(koehenkilo):
-    avaimet = osalLista[koehenkilo]["suhdeluvut"].keys()
-    suhteet = lm.suhdeListat(osalLista[koehenkilo]["suhdeluvut"])
-    st.piirraKartta(suhteet[0], suhteet[1], avaimet)
     
 try:
     f = open("osallistujat.json", "r")
