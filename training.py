@@ -6,7 +6,9 @@ import listaMetodit as lm
 import scatterTest as st
 
 skripti = pr.lataaSkripti("formanttiSkripti.praat")
-treenattava = 'avoinO'
+treenattava = 'treenattu'
+kohteet = [(0.6, 0.25, 'avoinO'), (0.16, 0.29, 'tuuti')]
+kohde = kohteet[0]
 
 def num(string):
     eka = int(string.split(',')[0])
@@ -35,9 +37,12 @@ harjoituskerrat = 2
 tehdyt_harjoitukset = 0
 #harj_formantit = []
 aakkoset = osalLista[koehenkilo]["suhdeluvut"].keys()
+aakkoset.append(kohde[2])
 aakkoset.append(treenattava)
 
 suhteet = lm.suhdeListat(osalLista[koehenkilo]["suhdeluvut"])
+suhteet[0].append(kohde[0])
+suhteet[1].append(kohde[1])
 suhteet[0].append(0)
 suhteet[1].append(0)
 
@@ -54,6 +59,7 @@ while tehdyt_harjoitukset < harjoituskerrat:
     jatko("\nPaina Enter aloittaaksesi harjoittelun")
     tiedosto = (koehenkilo + '_' +
                 str(len(osalLista[koehenkilo]["Harjoitus"]) + 1))
+    ar.toisto(kohde[2])    
     ar.nauhoitus(5, tiedosto, koehenkilo)
     pr.ajaSkripti(skripti, tiedosto + '.wav',
                   tiedosto + '_form.txt', koehenkilo)

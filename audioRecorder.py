@@ -37,9 +37,9 @@ def nauhoitus(pituus, tiedosto, polku):
     waveFile.writeframes(b''.join(frames))
     waveFile.close()
 
-def toisto(tiedosto, polku):
+def toisto(tiedosto):
     CHUNK = 1024
-    filename = polku + "/" + tiedosto + ".wav"
+    filename = tiedosto + ".wav"
 
     wf = wave.open(filename, 'rb')
 
