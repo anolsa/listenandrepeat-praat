@@ -33,7 +33,7 @@ for i, e in enumerate(osalLista.keys()):
 kh_valinta = input("Valitse haluamasi koehenkilo listasta: ")
 koehenkilo = "KH" + str(kh_valinta)
 
-harjoituskerrat = 2
+harjoituskerrat = 3
 tehdyt_harjoitukset = 0
 #harj_formantit = []
 aakkoset = osalLista[koehenkilo]["suhdeluvut"].keys()
@@ -59,7 +59,7 @@ while tehdyt_harjoitukset < harjoituskerrat:
     jatko("\nPaina Enter aloittaaksesi harjoittelun")
     tiedosto = (koehenkilo + '_' +
                 str(len(osalLista[koehenkilo]["Harjoitus"]) + 1))
-    ar.toisto(kohde[2])    
+    #ar.toisto(kohde[2])    
     ar.nauhoitus(5, tiedosto, koehenkilo)
     pr.ajaSkripti(skripti, tiedosto + '.wav',
                   tiedosto + '_form.txt', koehenkilo)

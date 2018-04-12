@@ -17,7 +17,7 @@ def kalibraatio(tiedostoLista, skripti, polku):
         
     for i in tiedostoLista:
         while True:
-            ar.nauhoitus(7, i, polku)    
+            ar.nauhoitus(10, i, polku)    
             pr.ajaSkripti(skripti, i + ".wav", i + "_form.txt", polku)
             f = open(polku + "/" + i + "_form.txt", "r")
             temp = f.readlines()
